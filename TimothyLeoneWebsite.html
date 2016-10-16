@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			<h1>Timothy Vito Leone</h1>
+		</title>
+	</head>
+	<body>
+		<p>
+			<img src="" />
+		</p>
+		<p>
+			Hello!  My name is Timothy Leone.  I am currently attending Queens College getting a 
+			Masters in Computer Science.  I have good attention to detail and good quantitative
+			skills.
+		</p>
+		<p><strong>
+			Here are some of the projects I made:
+			</strong>
+		</p>
+		<p>
+			<strong>Computer Networks Project: Server Scanner</strong>
+			<br>nmap -T4 10.13.169.0 -oN nmap.txt</br>
+			<br>nmap –T4 10.13.169.0 –oX</br>
+			<br>nmap01013169000.xml, nmapNext.xml</br>
+			<br>nmap 127.0.0.1 –oX nmap127.xml</br>
+			<br>nmap 127.0.0.1 –oX nmap127-run.xml</br>
+			<br>Wiz=10.13.169.0/24 (-oN nmap010013169000.txt)</br>
+			<br>Nmap -T4 (speeds up process) 10.13.169.0/24 –oN nmap.txt</br>
+			<br>Tested nmap on 10.3.12.0, 10.20.0.0, 10.82.4.0, 10.82.1.1, 255.255.0.0, 10.3.12.100 and 10.3.12.121.</br>
+			<br>nmap 10.3.12.0 –oX nmap100312.xml</br>
+			<br>nmap 10.3.12.0 -0X nmap100312-new.xml</br>
+			<br>nmap 10.3.12.0 -oN nmap100312-new.txt</br>
+			<br>nmap 10.20.0.0 –oX nmap1020.xml</br>
+			<br>nmap 10.20.0.0 -oX nmap1020-new.xml</br>
+			<br>nmap 10.20.0.0 -0X nmap1020-new2.xml</br>
+			<br>nmap 10.20.0.0 -oX nmap1020-new6.xml</br>
+			<br>nmap 10.20.0.0 -oX nmap1020-next.xml</br>
+			<br>nmap 10.82.4.0 -oX nmap1082.xml</br>
+			<br>nmap 10.82.4.0 -oX nmap1082-new.xml</br>
+			<br>nmap 10.3.12.100 -oX DNS100.xml</br>
+			<br>nmap 10.3.12.121 -oX DNS121.xml</br>
+			<br>nmap 10.82.1.1 -oX Gateway.xml</br>
+			<br>nmap 255.255.0.0 NetMask.xml</br>
+			<br>Sudo nmap -Pn -sS -T4 -oA $(/usr/local/bin/gen_fn.py --network (IP address/network name) --cidr 24) –p 1-65535 (IP address/network name) /24 (ex.: 10.13.169.0/24)</br>
+			<br>sudo nmap –Pn –sS –T3 –oA $(/usr/local/bin/gen_fn.py --network 10.13.169.0 --cidr 24) – p 1-65535 10.13.169.0/24</br>
+			<br>Ran the line: “sudo nmap -Pn -sS -T4 –oA $ (/usr/local/bin/gen_fn.py --network (host IP address/network name) --cidr (CIDR notation subnet mask) -p 1-65535 (IP address/network name)/(CIDR notation/subnet mask)</br>
+			<br>on: 10.13.169.0/24</br>
+			<br>10.20.0.0/16</br>
+			<br>10.3.12.0/23</br>
+			<br>Running another test on those 3 addresses but added the command --max_rtt_timeout=25</br>
+			<br>Etc.</br>
+		</p>
+		<p>
+			Hash Table:
+			<br>#ifndef HASHTABLE_H</br>
+			<br>#define HASHTABLE_H</br>
+			<br>#include <cstring></br>
+			<br>#include <string></br>
+			<br>using namespace std;</br>
+			<br>#pragma once</br>
+			<br>const int dataArraySize = 50;</br>
+			<br>const int hashTableSize = 10000;</br>
+			<br>const int stringSize = 80;</br>
+			<br>typedef struct {</br>
+			<br>int index;</br>
+			<br>char keyValue[stringSize];</br>
+			<br>} hashRecord;</br>
+			<br>typedef struct {</br>
+			<br>char keyField[stringSize];</br>
+			<br>// Other fields go here</br>
+			<br>} dataRecord;</br>
+			<br>class HashTable {</br>
+			<br>public:</br>
+			<br>HashTable(void);</br>
+			<br>int search(string keyValue);</br>
+			<br>void insert(dataRecord data, dataRecord dataTable[], bool &dup, bool &full);</br>
+			<br>void remove();</br>
+			<br>private:</br>
+			<br>int findHashCode(string k);</br>
+			<br>hashRecord table[hashTableSize];</br>
+			<br>int dataArrayLength;</br>
+			<br>};</br>
+			<br>#endif</br>
+			<br>#include "HashTable.h"</br>
+			<br>// HashTable() - Setting all the indices to -1 and</br>
+			<br>// the strings to blank</br>
+			<br>HashTable::HashTable(void)</br>
+			<br>{</br>
+			<br>int i;</br>
+			<br>for (i = 0; i < hashTableSize; i++) {</br>
+			<br>table[i].index = -1;</br>
+			<br>table[i].keyValue[0] = '\0';</br>
+			<br>}</br>
+			<br>dataArrayLength = 0;</br>
+			<br>}</br>
+			<br>// hash() - calculating the hash function</br>
+			<br>int HashTable::findHashCode(string k) {</br>
+			<br>unsigned i;</br>
+			<br>int sum = 0;</br>
+			<br>for (i = 0; i < strlen(k); i++)</br>
+			<br>sum += k[i];</br>
+			<br>return (sum % (hashTableSize + 1));</br>
+			<br>}</br>
+			<br>// hashSearch() - Inserting into a Hash Table</br>
+			<br>// resolving Hash Collision using</br>
+			<br>// Linear Probing</br>
+			<br>int HashTable::search(string k) {</br>
+			<br>int ix, oldIx;</br>
+			<br>bool found = false;</br>
+			<br>int count = 0;</br>
+			<br>ix = findHashCode(k);</br>
+			<br>oldIx = ix;</br>
+			<br>do {</br>
+			<br>count++;</br>
+			<br>if (strcmp(table[ix].keyValue, k)== 0)</br>
+			<br>found = true;</br>
+			<br>else</br>
+			<br>ix = (ix +1 ) % hashTableSize;</br>
+			<br>} while (!found && table[ix].keyValue[0] != '\0' && ix != oldIx);</br>
+			<br>cout << "Number of processes: " << count << endl;</br>
+			<br>if (found)</br>
+			<br>return (ix);</br>
+			<br>else</br>
+			<br>return(ix);</br>
+			<br>}</br>
+			<br>//hashInsert() - Inserting into a hash table and</br>
+			<br>// resolving hash collision using</br>
+			<br>// linear probing</br>
+			<br>void HashTable::insert(dataRecord data, dataRecord dataTable[], bool &dup, bool &full) {</br>
+			<br>int ix, oldIx;</br>
+			<br>int idx;</br>
+			<br>dataTable[idx = dataArrayLength++] = data;</br>
+			<br>// Presuming that it is neither full n</br>
+			<br>// or a duplicate</br>
+			<br>full = false;</br>
+			<br>dup = false;</br>
+			<br>// Set up the starting place</br>
+			<br>// for the search of the hash table</br>
+			<br>ix = findHashCode(data.keyField);</br>
+			<br>oldIx = ix;</br>
+			<br>do {</br>
+			<br>if (strcmp(table[ix].keyValue, data.keyField) == 0)</br>
+			<br>dup = true;</br>
+			<br>else if(table[ix].keyValue[0] != '\0')</br>
+			<br>ix = (ix + 1) % hashTableSize;</br>
+			<br>} while (!dup && table[ix].keyValue[0] != '\0' && ix == oldIx);</br>
+			<br>if (!dup)</br>
+			<br>if (table[ix].keyValue[0] == '\0') {</br>
+			<br>strcpy(table[ix].keyValue, data.keyField);</br>
+			<br>table[ix].index = idx;</br>
+			<br>}</br>
+			<br>else</br>
+			<br>full = true;</br>
+			<br>}</br>
+			<br>#include "HashTable.h"</br>
+			<br>#include <cstdlib></br>
+			<br>#include <ctime></br>
+			<br>#include <iostream></br>
+			<br>#include <cstring></br>
+			<br>#include <math.h></br>
+			<br>using namespace std;</br>
+			<br>int linearsearch(int x[], int n, int key)</br>
+			<br>{</br>
+			<br>int i, count=0;</br>
+			<br>//This assumes an ordered array</br>
+			<br>for (i = 0; i < n && x[i] <= key; i++) {</br>
+			<br>if (x[i] == key) {</br>
+			<br>cout << "Amount of passes: " << count << endl;</br>
+			<br>return(i);</br>
+			<br>}</br>
+			<br>count++;</br>
+			<br>}</br>
+			<br>cout << "Amount of passes: " << count << endl;</br>
+			<br>return(-1);</br>
+			<br>}</br>
+			<br>int binarySearch(int x[], int n, int key)</br>
+			<br>{</br>
+			<br>int low, high, mid;</br>
+			<br>int count = 0;</br>
+			<br>low = 0;</br>
+			<br>high = n -1;</br>
+			<br>while (low <= high) {</br>
+			<br>mid = (low + high) / 2;</br>
+			<br>if (x[mid] == key) {</br>
+			<br>cout << "Amount of passes: " << count << endl;</br>
+			<br>return(mid);</br>
+			<br>}</br>
+			<br>else if (x[mid] > key) {</br>
+			<br>high = mid - 1;</br>
+			<br>count++;</br>
+			<br>}</br>
+			<br>else {</br>
+			<br>low = mid + 1;</br>
+			<br>count++;</br>
+			<br>}</br>
+			<br>}</br>
+			<br>cout << "Amount of passes: " << count << endl;</br>
+			<br>return(-1);</br>
+			<br>}</br>
+		</p>
+		<p>
+			
+		</p>
+		<p><strong> Professional Experience: </strong></p>
+		<p>
+			Adelphi University							Garden City, NY
+			<br>Lab Consultant - Department of Information Technology				February 2015 – August 2015</br>
+			<br>– Handled work orders, organized spread sheets, etc.</br>
+			<br></br>
+			<br>Research Intern - Department of Information Technology				October 2014 – December 2014</br>
+			<br>– Assisted in developing an app that scans activity of the university servers for improvement of security and detection of</br>
+			<br>improper activity</br>
+			<br></br>
+			<br>Nassau County								Mineola, NY</br>
+			<br>Nassau County Executive Ed Mangano’s Internship Program			June – August 2014:</br>
+			<br>– Data Entry, HTML, CSS - Department of Information Technology</br>
+
+		</p>
+		<p><strong> Education: </strong></p>
+		<p>
+			<br>Queens College, The City University Of New York Flushing, NY</br>
+			<br>Masters of Arts Expected: May 2018</br>
+			<br>Major: Computer Science</br>
+			<br></br>
+			<br>Adelphi University Garden City, NY</br>
+			<br>Bachelor of Science (Combined Degree Program with Columbia University) May 2015</br>
+			<br>Major 1: Computer Science</br><br> Major 2: Physics</br>
+			<br>Minor: Mathematics</br>
+			<br>Cumulative GPA: 3.7</br>
+			<br></br>
+			<br>COLUMBIA UNIVERSITY New York, NY</br>
+			<br>The Fu Foundation School of Engineering & Applied Science</br>
+			<br>Bachelor of Science (Combined Degree Program with Adelphi University) May 2013</br>
+			<br>Major: Applied Mathematics</br>
+			<br></br>
+		</p>
+		<p><strong> Relevent Skills: </strong></p>
+		<p>
+			<br>Systems: Windows, Unix (Ubuntu), Linux (Fedora, Kali), and Macintosh computer systems</br>
+			<br>Applications: Microsoft Word, Excel, PowerPoint</br>
+			<br>Languages: Java, C++, MATLAB, C, Scheme, Assembly, JavaScript, JavaFX, HDL (Verilog), HTML, CSS, PHP, some SQL</br>
+			<br>Experience in nmap with command and IP Address</br>
+		</p>
+		<p><strong> Technologies and Blogs: </strong></p>
+		<p>
+			<br><a href=""></a></br>
+		</p>
+		<p><strong> Blog: </strong></p>
+		<p>
+			I recently used Eclipse, a program used to write code in Java.
+		</p>
+	</body>
+</html>
